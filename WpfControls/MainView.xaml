@@ -81,12 +81,12 @@
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="150"/>
-                        <ColumnDefinition Width="215"/>
-                        <ColumnDefinition Width="35"/>
+                        <ColumnDefinition Width="175"/>
+                        <ColumnDefinition Width="45"/>
                         <ColumnDefinition Width="10"/>
-                        <ColumnDefinition Width="35"/>
+                        <ColumnDefinition Width="50"/>
                         <ColumnDefinition Width="10"/>
-                        <ColumnDefinition Width="35"/>
+                        <ColumnDefinition Width="45"/>
                     </Grid.ColumnDefinitions>
                     <ComboBox IsReadOnly="True" 
                               ItemsSource="{Binding PlotItems}"
@@ -99,36 +99,39 @@
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ComboBox>
-                    <Button Grid.Column="2"
+                    <RadioButton Grid.Column="2"
                             ClickMode="Press" 
-                            Background="#282b33"
-                            Foreground="White">24H
-                        <Button.Resources>
+                            Foreground="White"
+                            GroupName="TimePeriod"
+                            IsChecked="{Binding TimeSpanDay}">24H
+                        <RadioButton.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="8"/>
                             </Style>
-                        </Button.Resources>
-                    </Button>
-                    <Button Grid.Column="4"
+                        </RadioButton.Resources>
+                    </RadioButton>
+                    <RadioButton Grid.Column="4"
                             ClickMode="Press"
-                            Background="#282b33"
-                            Foreground="White">Week
-                        <Button.Resources>
+                            Foreground="White"
+                            GroupName="TimePeriod"
+                            IsChecked="{Binding TimeSpanWeek}">Week
+                        <RadioButton.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="8"/>
                             </Style>
-                        </Button.Resources>
-                    </Button>
-                    <Button Grid.Column="6"
+                        </RadioButton.Resources>
+                    </RadioButton>
+                    <RadioButton Grid.Column="6"
                             ClickMode="Press"
-                            Background="#282b33"
-                            Foreground="White">YTD
-                        <Button.Resources>
+                            Foreground="White"
+                            GroupName="TimePeriod"
+                            IsChecked="{Binding TimeSpanSeason}">YTD
+                        <RadioButton.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="8"/>
                             </Style>
-                        </Button.Resources>
-                    </Button>
+                        </RadioButton.Resources>
+                    </RadioButton>
                 </Grid>
                 <oxy:PlotView Model="{Binding Plot}" 
                               Width="500" 
