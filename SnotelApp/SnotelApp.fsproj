@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="SnotelSite.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 
@@ -17,7 +18,7 @@
     <PackageReference Include="Serilog" Version="2.10.0" />
     <PackageReference Include="Serilog.Extensions.Logging" Version="3.1.0" />
     <PackageReference Include="Serilog.Sinks.Console" Version="4.0.1" />
-    <PackageReference Include="SnotelAPI" Version="0.0.2" />
+    <PackageReference Include="SnotelAPI" Version="0.0.3" />
   </ItemGroup>
 
   <ItemGroup>

@@ -81,11 +81,11 @@
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="150"/>
-                        <ColumnDefinition Width="195"/>
+                        <ColumnDefinition Width="215"/>
                         <ColumnDefinition Width="35"/>
-                        <ColumnDefinition Width="25"/>
+                        <ColumnDefinition Width="10"/>
                         <ColumnDefinition Width="35"/>
-                        <ColumnDefinition Width="25"/>
+                        <ColumnDefinition Width="10"/>
                         <ColumnDefinition Width="35"/>
                     </Grid.ColumnDefinitions>
                     <ComboBox IsReadOnly="True" 
@@ -99,9 +99,36 @@
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ComboBox>
-                    <Button Grid.Column="2" ClickMode="Press">24H</Button>
-                    <Button Grid.Column="4" ClickMode="Press">Week</Button>
-                    <Button Grid.Column="6" ClickMode="Press">YTD</Button>
+                    <Button Grid.Column="2"
+                            ClickMode="Press" 
+                            Background="#282b33"
+                            Foreground="White">24H
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="8"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                    <Button Grid.Column="4"
+                            ClickMode="Press"
+                            Background="#282b33"
+                            Foreground="White">Week
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="8"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                    <Button Grid.Column="6"
+                            ClickMode="Press"
+                            Background="#282b33"
+                            Foreground="White">YTD
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="8"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
                 </Grid>
                 <oxy:PlotView Model="{Binding Plot}" 
                               Width="500" 
