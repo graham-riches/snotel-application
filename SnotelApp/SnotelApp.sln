@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31912.275
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "SnotelApp", "SnotelApp.fsproj", "{731EA04B-2A08-4B8D-B070-D8324795F8D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfControls", "..\WpfControls\WpfControls.csproj", "{EDBBA94A-F8D6-463C-94AA-F8366B5D8DAE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{731EA04B-2A08-4B8D-B070-D8324795F8D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{731EA04B-2A08-4B8D-B070-D8324795F8D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{731EA04B-2A08-4B8D-B070-D8324795F8D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{731EA04B-2A08-4B8D-B070-D8324795F8D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDBBA94A-F8D6-463C-94AA-F8366B5D8DAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDBBA94A-F8D6-463C-94AA-F8366B5D8DAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDBBA94A-F8D6-463C-94AA-F8366B5D8DAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDBBA94A-F8D6-463C-94AA-F8366B5D8DAE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9E005EFF-87AC-4311-92A7-04E3E8E76E2D}
+	EndGlobalSection
+EndGlobal
