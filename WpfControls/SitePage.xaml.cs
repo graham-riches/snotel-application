@@ -10,30 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace WpfControls
 {
     /// <summary>
-    /// Interaction logic for Window1.xaml
+    /// Interaction logic for SitePage.xaml
     /// </summary>
-    public partial class MainView : Window
+    public partial class SitePage : Page
     {
-        public MainView()
+        public SitePage()
         {
             InitializeComponent();
-            MainFrame.Navigate(new SitePage());
-        }
-
-    private void Window_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.ChangedButton == MouseButton.Left)
-                this.DragMove();
-        }
-
-        private void CloseAppHandler(object sender, RoutedEventArgs e)
-        {
-            Close();
         }
     }
 }

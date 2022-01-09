@@ -1,0 +1,138 @@
+﻿<Page x:Class="WpfControls.SitePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfControls"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="SitePage"
+      xmlns:oxy="http://oxyplot.org/wpf">
+    <Page.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </Page.Resources>
+    <Grid Background="#282b33">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row ="1" Name="MainGrid" ShowGridLines="False" Height="450">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0" Name="Left" HorizontalAlignment="Center" Margin="15,15,15,15" Width="250">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Content="Site Data" FontSize="18" FontWeight="Bold" HorizontalContentAlignment="Center"/>
+                <Border Grid.Row="1" BorderThickness="0,2,0,0" BorderBrush="White">
+                    <Grid Name="Metadata"  Width="250" ShowGridLines="False">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="150"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Column="0" Grid.Row="0" Content="Name"/>
+                        <Label Grid.Column="0" Grid.Row="1" Content="State"/>
+                        <Label Grid.Column="0" Grid.Row="2" Content="Coordinates"/>
+                        <Label Grid.Column="0" Grid.Row="3" Content="Elevation"/>
+                        <Label Grid.Column="0" Grid.Row="4" Content="Temperature"/>
+                        <Label Grid.Column="0" Grid.Row="5" Content="Snow Depth"/>
+                        <Label Grid.Column="0" Grid.Row="6" Content="SWE"/>
+                        <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding SiteName}"/>
+                        <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding State}"/>
+                        <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding Coordinates}"/>
+                        <TextBlock Grid.Column="1" Grid.Row="3" Text="{Binding Elevation}"/>
+                        <TextBlock Grid.Column="1" Grid.Row="4" Text="{Binding Temperature}"/>
+                        <TextBlock Grid.Column="1" Grid.Row="5" Text="{Binding SnowDepth}"/>
+                        <TextBlock Grid.Column="1" Grid.Row="6" Text="{Binding SWE}"/>
+                    </Grid>
+                </Border>
+            </Grid>
+            <Grid Grid.Column="1" Name="Right" Width="500" Height="350">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="175"/>
+                        <ColumnDefinition Width="45"/>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="45"/>
+                    </Grid.ColumnDefinitions>
+                    <ComboBox IsReadOnly="True" 
+                              ItemsSource="{Binding PlotItems}"
+                              SelectedItem="{Binding ItemSelected}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Name}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ComboBox>
+                    <RadioButton Grid.Column="2"
+                            ClickMode="Press" 
+                            Foreground="White"
+                            GroupName="TimePeriod"
+                            IsChecked="{Binding TimeSpanDay}">24H
+                        <RadioButton.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="8"/>
+                            </Style>
+                        </RadioButton.Resources>
+                    </RadioButton>
+                    <RadioButton Grid.Column="4"
+                            ClickMode="Press"
+                            Foreground="White"
+                            GroupName="TimePeriod"
+                            IsChecked="{Binding TimeSpanWeek}">Week
+                        <RadioButton.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="8"/>
+                            </Style>
+                        </RadioButton.Resources>
+                    </RadioButton>
+                    <RadioButton Grid.Column="6"
+                            ClickMode="Press"
+                            Foreground="White"
+                            GroupName="TimePeriod"
+                            IsChecked="{Binding TimeSpanSeason}">YTD
+                        <RadioButton.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="8"/>
+                            </Style>
+                        </RadioButton.Resources>
+                    </RadioButton>
+                </Grid>
+                <oxy:PlotView Model="{Binding Plot}" 
+                              Width="500" 
+                              Height="325" 
+                              Grid.Row="1"
+                              Margin="0,10,0,10"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

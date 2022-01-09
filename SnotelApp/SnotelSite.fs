@@ -56,7 +56,7 @@ module SnotelSite =
                         match request.TimeSpan with
                         | Last24Hours -> s.Service.GetHourlyDataAsync(s.StationTriplet, e, DateTime.Now.AddDays(-1)) |> Async.AwaitTask |> Async.map (fun r -> r.GetDataPoints)
                         | LastWeek    -> s.Service.GetHourlyDataAsync(s.StationTriplet, e, DateTime.Now.AddDays(-7)) |> Async.AwaitTask |> Async.map (fun r -> r.GetDataPoints)
-                        | SeasonTotal -> s.Service.GetDailyDataAsync(s.StationTriplet, e, getSeasonStartDate ()) |> Async.AwaitTask |> Async.map (fun r -> r.GetDataPoints)                              
+                        | SeasonTotal -> s.Service.GetDailyDataAsync(s.StationTriplet, e, getSeasonStartDate ())     |> Async.AwaitTask |> Async.map (fun r -> r.GetDataPoints)                              
                     return Some (data ())
                 | None -> return None                  
             | None -> return None
