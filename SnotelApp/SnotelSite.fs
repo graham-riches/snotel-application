@@ -66,10 +66,14 @@ module SnotelSite =
         async {
             let service = SnotelService.Service.Client
             let! meta = service.GetStationMetadataAsync stationTriplet |> Async.AwaitTask
-            let! temperature = service.GetCurrentDataAsync(stationTriplet, ElementType.AirTemperature) |> Async.AwaitTask
-            let! depth = service.GetCurrentDataAsync(stationTriplet, ElementType.SnowDepth) |> Async.AwaitTask
-            let! swe = service.GetCurrentDataAsync(stationTriplet, ElementType.SnowWaterEquivalent) |> Async.AwaitTask            
-            let data = {Temperature = temperature.Value; SnowDepth = depth.Value; SWE = swe.Value}
+            let! temperature = service.GetHourlyDataAsync(stationTriplet, ElementType.AirTemperature, DateTime.Now.AddDays(-1)) |> Async.AwaitTask
+            let! depth = service.GetHourlyDataAsync(stationTriplet, ElementType.SnowDepth, DateTime.Now.AddDays(-1)) |> Async.AwaitTask
+            let! swe = service.GetHourlyDataAsync(stationTriplet, ElementType.SnowWaterEquivalent, DateTime.Now.AddDays(-1)) |> Async.AwaitTask            
+            let data = {
+                Temperature = temperature.DataPoints |> Array.last |> (fun f -> f.Value)
+                SnowDepth = depth.DataPoints |> Array.last |> (fun f -> f.Value)
+                SWE = swe.DataPoints  |> Array.last |> (fun f -> f.Value)
+            }
             return {
                 Service = service
                 StationTriplet = stationTriplet

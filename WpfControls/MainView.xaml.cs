@@ -1,16 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
+﻿using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace WpfControls
 {
@@ -22,18 +11,30 @@ namespace WpfControls
         public MainView()
         {
             InitializeComponent();
-            MainFrame.Navigate(new SitePage());
+            MainFrame.Navigate(new HomePage());
         }
 
-    private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
+            {
                 this.DragMove();
+            }
         }
 
         private void CloseAppHandler(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void NavigateHomeHandler(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new HomePage());
+        }
+
+        private void NavigateSiteHandler(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new SitePage());
         }
     }
 }

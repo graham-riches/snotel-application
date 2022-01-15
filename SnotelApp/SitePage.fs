@@ -10,8 +10,7 @@ open OxyPlot
 open OxyPlot.Series
 open OxyPlot.Axes
 
-
-module Core = 
+module SitePage = 
     type Entity = {
         Id: int
         Value: string
@@ -25,13 +24,13 @@ module Core =
         TimeSpan: SnotelSite.TimeRequest
     }
 
-    type MessageType =
+    type Message =
       | Select of int option
       | LoadSiteDataSuccess of SnotelSite.Snotel
       | LoadSiteDataFailed of exn
       | LoadMetricsFailed of exn
       | LoadMetricsSuccess of SnotelService.Responses.DataPoint[]
-      | SetTimeSpan of SnotelSite.TimeRequest
+      | SetTimeSpan of SnotelSite.TimeRequest      
       | Empty
 
     type CommandMsg =
@@ -87,7 +86,7 @@ module Core =
         | LoadStationData site -> Cmd.OfAsync.either loadSiteFromString site id LoadSiteDataFailed
         | LoadPlotData request -> Cmd.OfAsync.either loadDataMetrics request id LoadMetricsFailed
 
-    let bindings () : Binding<Model, MessageType> list = [
+    let bindings () : Binding<Model, Message> list = [
         "SiteName"    |> Binding.oneWay (fun m -> if m.Site.IsSome then m.Site.Value.MetaData.Name else "")
         "State"       |> Binding.oneWay (fun m -> if m.Site.IsSome then m.Site.Value.MetaData.State else "")
         "Coordinates" |> Binding.oneWay (fun m -> if m.Site.IsSome then m.Site.Value.MetaData.Location else "")
@@ -113,8 +112,3 @@ module Core =
             ])
         "ItemSelected" |> Binding.subModelSelectedItem("PlotItems", (fun m -> m.Selected), Select)
     ]
-
-    [<EntryPoint; STAThread>]
-    let main _ =
-      Program.mkProgramWpfWithCmdMsg init update bindings toCmd
-      |> Program.runWindow (MainView())

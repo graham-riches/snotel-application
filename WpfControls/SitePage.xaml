@@ -20,7 +20,7 @@
             <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
     </Page.Resources>
-    <Grid Name="MainGrid" ShowGridLines="False" Height="425" Background="#282b33">
+    <Grid Name="MainGrid" ShowGridLines="False" Height="400" Background="#282b33">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="auto"/>
