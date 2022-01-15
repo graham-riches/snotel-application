@@ -87,7 +87,8 @@ module SitePage =
         | LoadPlotData request -> Cmd.OfAsync.either loadDataMetrics request id LoadMetricsFailed
 
     let bindings () : Binding<Model, Message> list = [
-        "SiteName"    |> Binding.oneWay (fun m -> if m.Site.IsSome then m.Site.Value.MetaData.Name else "")
+        //"SiteName"    |> Binding.oneWay (fun m -> if m.Site.IsSome then m.Site.Value.MetaData.Name else "")
+        "SiteName"    |> Binding.oneWay (fun m -> "test")
         "State"       |> Binding.oneWay (fun m -> if m.Site.IsSome then m.Site.Value.MetaData.State else "")
         "Coordinates" |> Binding.oneWay (fun m -> if m.Site.IsSome then m.Site.Value.MetaData.Location else "")
         "Elevation"   |> Binding.oneWay (fun m -> if m.Site.IsSome then string m.Site.Value.MetaData.Elevation else "")

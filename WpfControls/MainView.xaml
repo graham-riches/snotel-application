@@ -25,7 +25,7 @@
                     Background="#282b33"
                     Foreground="White"
                     FontSize="16"
-                    Click="NavigateHomeHandler"
+                    Command="{Binding NavigateHome}"
                     Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
                     BorderBrush="Transparent"
                     BorderThickness="0"
@@ -45,7 +45,9 @@
             </Button>
         </Grid>
         <Grid Grid.Row="1">
-            <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" />
+            <Frame x:Name="MainFrame"
+                   NavigationUIVisibility="Hidden"
+                   Content="{Binding Frame}"/>
         </Grid>
     </Grid>
 </Window>

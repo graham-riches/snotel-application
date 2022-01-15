@@ -7,9 +7,10 @@
 	  <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
-  <ItemGroup>    
+  <ItemGroup>            
     <Compile Include="AsyncExtensions.fs" />
     <Compile Include="SnotelSite.fs" />
+	  <Compile Include="HomePage.fs" />
 	  <Compile Include="SitePage.fs" />
     <Compile Include="App.fs" />
   </ItemGroup>

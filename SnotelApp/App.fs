@@ -4,48 +4,48 @@ open System
 open Elmish
 open Elmish.WPF
 open WpfControls
-open SnotelService.Responses
-open SnotelService.Parameters
-open OxyPlot
-open OxyPlot.Series
-open OxyPlot.Axes
 
 
 module App = 
     type Message = 
     | SitePageMessage of SitePage.Message
+    | Temp
 
     type CommandMessage =
-    | NavigateToSitePage
+    | NavigateToSitePage    
 
     type Model = {
+        MainView: MainView
         SitePageModel: SitePage.Model
     }
 
     let init () =
         let page, _ = SitePage.init()
-        {SitePageModel = page }, []
+        {MainView = MainView(); SitePageModel = page }, []
 
     let update msg model =
         match msg with 
         | SitePageMessage site -> model, []
+        | Temp -> model, []        
         
     let toCmd = function
-    | NavigateToSitePage -> []
+    | NavigateToSitePage -> []    
 
+    // TODO: Figure out how to specify bindings at a per page level
     let bindings () : Binding<Model, Message> list = [
-        "SiteName"    |> Binding.oneWay (fun m -> "")
-        "State"       |> Binding.oneWay (fun m -> "")
-        "Coordinates" |> Binding.oneWay (fun m -> "")
-        "Elevation"   |> Binding.oneWay (fun m -> "")
-        "Temperature" |> Binding.oneWay (fun m -> "")
-        "SnowDepth"   |> Binding.oneWay (fun m -> "")
-        "SWE"         |> Binding.oneWay (fun m -> "")
-        "Plot"        |> Binding.oneWay (fun m -> PlotModel())
+        // Delegate bindings to the appropriate UI entity        
+        "SiteName" |> Binding.subModel (
+            (fun m -> m.SitePageModel),
+            //(fun (parent, site) -> site),
+            SitePageMessage,
+            (fun () -> [
+            "SiteName" |> Binding.oneWay(fun m -> "Test")]))
+        "GetStarted"  |> Binding.cmd(Temp)
+        "Frame" |> Binding.oneWay (fun _ -> SitePage())        
         ]
 
 
     [<EntryPoint; STAThread>]
     let main _ =
       Program.mkProgramWpfWithCmdMsg init update bindings toCmd
-      |> Program.runWindow (MainView())
+      |> Program.runWindow(MainView())
